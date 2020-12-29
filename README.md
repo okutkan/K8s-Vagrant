@@ -122,3 +122,30 @@ Vagrant.configure("2") do |config|
       name: vagrant
       group: docker
  ```
+
+#### Step 2.2: Disabling swap
+
+-Kubelet will not start if the system has swap enabled, so we are disabling swap using the below code
+
+```YAML
+  - name: Remove swapfile from /etc/fstab
+    mount:
+      name: "{{ item }}"
+      fstype: swap
+      state: absent
+    with_items:
+      - swap
+      - none
+
+  - name: Disable swap
+    command: swapoff -a
+    when: ansible_swaptotal_mb > 0
+```
+
+#### Step 2.2: Disabling swap
+
+-Kubelet will not start if the system has swap enabled, so we are disabling swap using the below code
+
+```YAML
+
+```
