@@ -200,3 +200,13 @@ Vagrant.configure("2") do |config|
      - cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
      - chown vagrant:vagrant /home/vagrant/.kube/config
 ```
+
+#### Step 2.5: Setup the container networking
+
+- Setup the container networking provider and the network policy engine using the below code.
+
+```YAML
+  - name: Install calico pod network
+    become: false
+    command: kubectl create -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/calico.yaml
+```    
