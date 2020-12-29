@@ -1,10 +1,10 @@
-# K8s-Vagrant
+# K8s-Vagrant-Ansible
+
 Kubernetes Setup Using Ansible and Vagrant
 
 This repo is based on the Kubernetes.io blog post about setting up Kubernetes cluster using ansible and vagrant.
 
 For more details see [blog post](https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/)
-
 
 ## Prerequisites
 
