@@ -233,3 +233,19 @@ Vagrant.configure("2") do |config|
     - name: docker status
       service: name=docker state=started
 ```
+
+### Step 3: Ansible playbook for Kubernetes node
+
+- Create a file named `node-playbook.yml` in the directory `kubernetes-setup`.
+- Added code from  steps 2.1 -2.3 to `node-playbook.yml`.
+- Add the code below into `node-playbook.yml`.
+- Add the code from step 2.7 to finish this playbook
+
+```YAML
+  - name: Copy the join command to server location
+    copy: src=join-command dest=/tmp/join-command.sh mode=0777
+
+  - name: Join the node to cluster
+    command: sh /tmp/join-command.sh
+```
+
