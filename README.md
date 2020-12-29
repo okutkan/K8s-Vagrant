@@ -224,4 +224,12 @@ Vagrant.configure("2") do |config|
     local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
 ```
 
+#### Step 2.7: Setup a handler
 
+-Setup a handler for checking Docker daemon using the below code.
+
+```YAML
+  handlers:
+    - name: docker status
+      service: name=docker state=started
+```
