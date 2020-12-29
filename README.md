@@ -142,10 +142,48 @@ Vagrant.configure("2") do |config|
     when: ansible_swaptotal_mb > 0
 ```
 
-#### Step 2.2: Disabling swap
+#### Step 2.3: Install kubelet, kubeadm and kubectl
 
--Kubelet will not start if the system has swap enabled, so we are disabling swap using the below code
+-Installing kubelet, kubeadm and kubectl using the below code
 
 ```YAML
+  - name: Add an apt signing key for Kubernetes
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
 
+  - name: Adding apt repository for Kubernetes
+    apt_repository:
+      repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+      filename: kubernetes.list
+
+  - name: Install Kubernetes binaries
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+        - kubelet 
+        - kubeadm 
+        - kubectl
+
+  - name: Configure node ip
+    lineinfile:
+      path: /etc/default/kubelet
+      line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
+
+  - name: Restart kubelet
+    service:
+      name: kubelet
+      daemon_reload: yes
+      state: restarted
+```
+
+- Initialize the Kubernetes cluster with kubeadm using the below code (applicable only on master node)
+
+```YAML
+- name: Initialize the Kubernetes cluster using kubeadm
+    command: kubeadm init --apiserver-advertise-address="192.168.50.10" --apiserver-cert-extra-sans="192.168.50.10"  --node-name k8s-master --pod-network-cidr=192.168.0.0/16
 ```
