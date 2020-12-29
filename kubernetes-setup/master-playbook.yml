@@ -88,7 +88,7 @@
       name: kubelet
       daemon_reload: yes
       state: restarted
-      
+
   - name: Initialize the Kubernetes cluster using kubeadm
     command: kubeadm init --apiserver-advertise-address="192.168.50.10" --apiserver-cert-extra-sans="192.168.50.10"  --node-name k8s-master --pod-network-cidr=192.168.0.0/16
 
@@ -110,6 +110,6 @@
   - name: Copy join command to local file
     local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
     
-    handlers:
-    - name: docker status
-      service: name=docker state=started
+  handlers:
+   - name: docker status
+     service: name=docker state=started
