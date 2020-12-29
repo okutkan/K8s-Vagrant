@@ -14,10 +14,10 @@ For more details see [blog post](https://kubernetes.io/blog/2019/03/15/kubernete
 
 - Ansible should be installed in your machine. Refer to the [Ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) for platform specific installation
 
-
 ## Getting started
 
 - run `Install-Linux.sh` or `Install-Mac.sh` depending on your operating system
+- After installations steps run `up.sh` on your terminal
 
 ## Setup Overview
 
