@@ -32,8 +32,8 @@
       update_cache: yes
     vars:
       packages:
-      - docker-ce-19.03 
-      - docker-ce-cli-19.03 
+      - docker-ce 
+      - docker-ce-cli 
       - containerd.io
     notify:
       - docker status
