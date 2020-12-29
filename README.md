@@ -209,4 +209,19 @@ Vagrant.configure("2") do |config|
   - name: Install calico pod network
     become: false
     command: kubectl create -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/calico.yaml
-```    
+```
+
+#### Step 2.6: Generate kube join command
+
+- Generate kube join command for joining the node to the Kubernetes cluster and store the command in the file named join-command.
+
+```YAML
+  - name: Generate join command
+    command: kubeadm token create --print-join-command
+    register: join_command
+
+  - name: Copy join command to local file
+    local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
+```
+
+
