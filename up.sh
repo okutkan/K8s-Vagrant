@@ -1,0 +1,2 @@
+vagrant --version
+vagrant up

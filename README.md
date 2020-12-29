@@ -249,3 +249,26 @@ Vagrant.configure("2") do |config|
     command: sh /tmp/join-command.sh
 ```
 
+### Step 4: Shell script to startup vagrant
+
+```BASH
+ vagrant up
+ ```
+
+## How to access Kunernetes cluster and nodes
+
+-Upon completion of all the above steps, the Kubernetes cluster should be up and running. We can login to the master or worker nodes using Vagrant as follows:
+
+````BASH
+$ ## Accessing master
+$ vagrant ssh k8s-master
+vagrant@k8s-master:~$ kubectl get nodes
+NAME         STATUS   ROLES    AGE     VERSION
+k8s-master   Ready    master   18m     v1.13.3
+node-1       Ready    <none>   12m     v1.13.3
+node-2       Ready    <none>   6m22s   v1.13.3
+
+$ ## Accessing nodes
+$ vagrant ssh node-1
+$ vagrant ssh node-2
+````
