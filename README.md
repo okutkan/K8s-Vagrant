@@ -16,8 +16,10 @@ For more details see [blog post](https://kubernetes.io/blog/2019/03/15/kubernete
 
 ## Getting started
 
-- run `Install-Linux.sh` or `Install-Mac.sh` depending on your operating system
-- After installations steps run `up.sh` on your terminal
+- Clone this repository to your computer.
+- On your terminal of choice go to repository root folder and run `Install-Linux.sh` or `Install-Mac.sh` depending on your operating system.
+- Setup scripts installs prerequisites on your computer
+- After initial setup script finishes your computer will be ready to run `up.sh`
 
 ## Setup Overview
 
